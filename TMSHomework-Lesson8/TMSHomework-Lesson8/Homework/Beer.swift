@@ -19,6 +19,7 @@ class Beer {
         self.country = country
         self.volume = volume
     }
+    
 }
 
 
