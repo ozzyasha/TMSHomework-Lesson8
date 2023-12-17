@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 class BeerManager {
     static let shared = BeerManager()
@@ -14,26 +13,44 @@ class BeerManager {
     
     private init() {}
     
-    let beerList = [Beer(name: "Heineken", price: 2.00, country: "Netherlands", volume: 10), Beer(name: "Guinness", price: 2.55, country: "Ireland", volume: 8), Beer(name: "Pilsner", price: 1.80, country: "Czech Republic", volume: 12), Beer(name: "Corona Extra", price: 2.40, country: "Mexico", volume: 7), Beer(name: "Alivaria White Gold", price: 1.50, country: "Belarus", volume: 9), Beer(name: "Stella Artois", price: 2.00, country: "Belgium", volume: 10)]
+    let beerList = [Beer(name: "Heineken", price: 2.00, country: "Netherlands", volume: 10), Beer(name: "Guinness", price: 2.55, country: "Ireland", volume: 8), Beer(name: "Pilsner", price: 1.80, country: "Czech Republic", volume: 12), Beer(name: "Corona Extra", price: 2.40, country: "Mexico", volume: 7)]
         
-    
-    func createBuyLabelsArray() -> [String] {
-        var buyLabels = [String]()
-        beerList.forEach { beer in
-            let beerLabel = "\(beer.price)$ / \(beer.name) (\(beer.country)) / \(beer.volume)L"
-            buyLabels.append(beerLabel)
-        }
-        return buyLabels
-    }
-    
     //Метод продажи пива
-    func sellBeer(label: UILabel){
-        self.revenue += 2
-        label.text = "Выручка: \(revenue)"
+    func sellBeer1() -> Int {
+        if beerList[0].volume != 0 {
+            beerList[0].volume -= 1
+            self.revenue += beerList[0].price
+        }
+        return beerList[0].volume
     }
+    
+    func sellBeer2() -> Int{
+        if beerList[1].volume != 0 {
+            beerList[1].volume -= 1
+            self.revenue += beerList[1].price
+        }
+        return beerList[1].volume
+    }
+    
+    func sellBeer3() -> Int{
+        if beerList[2].volume != 0 {
+            beerList[2].volume -= 1
+            self.revenue += beerList[2].price
+        }
+        return beerList[2].volume
+    }
+    
+    func sellBeer4() -> Int{
+        if beerList[3].volume != 0 {
+            beerList[3].volume -= 1
+            self.revenue += beerList[3].price
+        }
+        return beerList[3].volume
+    }
+    
     //Метод проверки выручки за сегодня
-    func checkTodayRevenue(label: UILabel){
-        label.text = "Выручка: \(revenue)"
+    func checkTodayRevenue() -> String {
+        return String(format: "%.2f", revenue)
     }
     
     //Метод обнуления выручки после наступления следующего дня
@@ -45,4 +62,5 @@ class BeerManager {
     func checkAndDisplayBeerLeftover() {
         
     }
+
 }
