@@ -54,13 +54,9 @@ class BeerManager {
     }
     
     //Метод обнуления выручки после наступления следующего дня
-    func resetRevenue() {
+    func resetRevenue() -> String {
         self.revenue = 0
+        return String(format: "%.2f", revenue)
     }
     
-    //Метод который проверяет и показывает остаток пива
-    func checkAndDisplayBeerLeftover() {
-        
-    }
-
 }

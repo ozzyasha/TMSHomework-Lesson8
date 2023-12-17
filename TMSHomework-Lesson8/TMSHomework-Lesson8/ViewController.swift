@@ -25,6 +25,11 @@ class ViewController: UIViewController {
     
     let revenueLabel = UILabel()
     
+    var savedBuyLabelText1: String = ""
+    var savedBuyLabelText2: String = ""
+    var savedBuyLabelText3: String = ""
+    var savedBuyLabelText4: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
@@ -39,6 +44,7 @@ class ViewController: UIViewController {
         setupBuyLabel4()
         
         setupRevenueLabel()
+        setupCompleteDayButton()
 
     }
     
@@ -77,6 +83,7 @@ class ViewController: UIViewController {
     
     func setupBuyLabel1() {
         buyLabel1.text = "\(BeerManager.shared.beerList[0].price)$ / \(BeerManager.shared.beerList[0].name) (\(BeerManager.shared.beerList[0].country)) / \(BeerManager.shared.beerList[0].volume)L"
+        savedBuyLabelText1 = "\(BeerManager.shared.beerList[0].price)$ / \(BeerManager.shared.beerList[0].name) (\(BeerManager.shared.beerList[0].country)) / \(BeerManager.shared.beerList[0].volume)L"
         buyLabel1.textColor = UIColor.black
         buyLabel1.font = UIFont(name: "Helvetica", size: 15)
         buyLabel1.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +94,7 @@ class ViewController: UIViewController {
     
     func setupBuyLabel2() {
         buyLabel2.text = "\(BeerManager.shared.beerList[1].price)$ / \(BeerManager.shared.beerList[1].name) (\(BeerManager.shared.beerList[1].country)) / \(BeerManager.shared.beerList[1].volume)L"
+        savedBuyLabelText2 = "\(BeerManager.shared.beerList[1].price)$ / \(BeerManager.shared.beerList[1].name) (\(BeerManager.shared.beerList[1].country)) / \(BeerManager.shared.beerList[1].volume)L"
         buyLabel2.textColor = UIColor.black
         buyLabel2.font = UIFont(name: "Helvetica", size: 15)
         buyLabel2.translatesAutoresizingMaskIntoConstraints = false
@@ -98,6 +106,7 @@ class ViewController: UIViewController {
     
     func setupBuyLabel3() {
         buyLabel3.text = "\(BeerManager.shared.beerList[2].price)$ / \(BeerManager.shared.beerList[2].name) (\(BeerManager.shared.beerList[2].country)) / \(BeerManager.shared.beerList[2].volume)L"
+        savedBuyLabelText3 = "\(BeerManager.shared.beerList[2].price)$ / \(BeerManager.shared.beerList[2].name) (\(BeerManager.shared.beerList[2].country)) / \(BeerManager.shared.beerList[2].volume)L"
         buyLabel3.textColor = UIColor.black
         buyLabel3.font = UIFont(name: "Helvetica", size: 15)
         buyLabel3.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +117,7 @@ class ViewController: UIViewController {
     
     func setupBuyLabel4() {
         buyLabel4.text = "\(BeerManager.shared.beerList[3].price)$ / \(BeerManager.shared.beerList[3].name) (\(BeerManager.shared.beerList[3].country)) / \(BeerManager.shared.beerList[3].volume)L"
+        savedBuyLabelText4 = "\(BeerManager.shared.beerList[3].price)$ / \(BeerManager.shared.beerList[3].name) (\(BeerManager.shared.beerList[3].country)) / \(BeerManager.shared.beerList[3].volume)L"
         buyLabel4.textColor = UIColor.black
         buyLabel4.font = UIFont(name: "Helvetica", size: 15)
         buyLabel4.translatesAutoresizingMaskIntoConstraints = false
@@ -125,6 +135,14 @@ class ViewController: UIViewController {
         setupRevenueLabelConstraints()
     }
     
+    func setupCompleteDayButton() {
+        completeDayButton.setTitle("Завершить день", for: .normal)
+        completeDayButton.addTarget(self, action: #selector(completeDayButtonTapped), for: .touchUpInside)
+        completeDayButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        setupCompleteDayButtonConstraints()
+    }
+    
     // MARK: - добавление элементов на экран
     func addSubviews() {
         self.view.addSubview(buyButton1)
@@ -138,6 +156,7 @@ class ViewController: UIViewController {
         self.view.addSubview(buyLabel4)
         
         self.view.addSubview(revenueLabel)
+        self.view.addSubview(completeDayButton)
     }
     
     // MARK: - создание действий для кнопок
@@ -165,7 +184,15 @@ class ViewController: UIViewController {
         revenueLabel.text = "Выручка: \(BeerManager.shared.checkTodayRevenue())"
     }
     
-    // MARK: - создаание констрейнтов для элементов
+    @objc func completeDayButtonTapped() {
+        revenueLabel.text = "Выручка: \(BeerManager.shared.resetRevenue())"
+        buyLabel1.text = savedBuyLabelText1
+        buyLabel2.text = savedBuyLabelText2
+        buyLabel3.text = savedBuyLabelText3
+        buyLabel4.text = savedBuyLabelText4
+    }
+    
+    // MARK: - создание констрейнтов для элементов
     func setupButton1Constraints() {
         buyButton1.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(220)
@@ -243,6 +270,15 @@ class ViewController: UIViewController {
             make.top.equalToSuperview().offset(100)
             make.left.equalToSuperview().offset(50)
             make.width.equalTo(200)
+            make.height.equalTo(42)
+        }
+    }
+    
+    func setupCompleteDayButtonConstraints() {
+        completeDayButton.snp.makeConstraints { make in
+            make.top.equalTo(buyButton4.snp.bottom).offset(50)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(250)
             make.height.equalTo(42)
         }
     }
