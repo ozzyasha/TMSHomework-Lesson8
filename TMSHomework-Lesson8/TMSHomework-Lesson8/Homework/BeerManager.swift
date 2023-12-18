@@ -11,6 +11,11 @@ class BeerManager {
     static let shared = BeerManager()
     private var revenue: Double = 0 // Выручка
     
+    let heinekenVolume = 10
+    let guinnessVolume = 8
+    let pilsnerVolume = 12
+    let coronaVolume = 7
+    
     private init() {}
     
     let beerList = [Beer(name: "Heineken", price: 2.00, country: "Netherlands", volume: 10), Beer(name: "Guinness", price: 2.55, country: "Ireland", volume: 8), Beer(name: "Pilsner", price: 1.80, country: "Czech Republic", volume: 12), Beer(name: "Corona Extra", price: 2.40, country: "Mexico", volume: 7)]
@@ -56,6 +61,10 @@ class BeerManager {
     //Метод обнуления выручки после наступления следующего дня
     func resetRevenue() -> String {
         self.revenue = 0
+        beerList[0].volume = heinekenVolume
+        beerList[1].volume = guinnessVolume
+        beerList[2].volume = pilsnerVolume
+        beerList[3].volume = coronaVolume
         return String(format: "%.2f", revenue)
     }
     

@@ -25,11 +25,6 @@ class ViewController: UIViewController {
     
     let revenueLabel = UILabel()
     
-    var savedBuyLabelText1: String = ""
-    var savedBuyLabelText2: String = ""
-    var savedBuyLabelText3: String = ""
-    var savedBuyLabelText4: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
@@ -53,6 +48,10 @@ class ViewController: UIViewController {
         buyButton1.setTitle("Купить", for: .normal)
         buyButton1.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
         buyButton1.translatesAutoresizingMaskIntoConstraints = false
+        buyButton1.setTitleColor(UIColor.white, for: .normal)
+        buyButton1.backgroundColor = UIColor.systemOrange
+        buyButton1.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 17)
+        buyButton1.layer.cornerRadius = 8
         
         setupButton1Constraints()
     }
@@ -61,6 +60,10 @@ class ViewController: UIViewController {
         buyButton2.setTitle("Купить", for: .normal)
         buyButton2.addTarget(self, action: #selector(button2Tapped), for: .touchUpInside)
         buyButton2.translatesAutoresizingMaskIntoConstraints = false
+        buyButton2.setTitleColor(UIColor.white, for: .normal)
+        buyButton2.backgroundColor = UIColor.systemOrange
+        buyButton2.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 17)
+        buyButton2.layer.cornerRadius = 8
         
         setupButton2Constraints()
     }
@@ -69,6 +72,10 @@ class ViewController: UIViewController {
         buyButton3.setTitle("Купить", for: .normal)
         buyButton3.addTarget(self, action: #selector(button3Tapped), for: .touchUpInside)
         buyButton3.translatesAutoresizingMaskIntoConstraints = false
+        buyButton3.setTitleColor(UIColor.white, for: .normal)
+        buyButton3.backgroundColor = UIColor.systemOrange
+        buyButton3.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 17)
+        buyButton3.layer.cornerRadius = 8
         
         setupButton3Constraints()
     }
@@ -77,13 +84,16 @@ class ViewController: UIViewController {
         buyButton4.setTitle("Купить", for: .normal)
         buyButton4.addTarget(self, action: #selector(button4Tapped), for: .touchUpInside)
         buyButton4.translatesAutoresizingMaskIntoConstraints = false
+        buyButton4.setTitleColor(UIColor.white, for: .normal)
+        buyButton4.backgroundColor = UIColor.systemOrange
+        buyButton4.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 17)
+        buyButton4.layer.cornerRadius = 8
         
         setupButton4Constraints()
     }
     
     func setupBuyLabel1() {
         buyLabel1.text = "\(BeerManager.shared.beerList[0].price)$ / \(BeerManager.shared.beerList[0].name) (\(BeerManager.shared.beerList[0].country)) / \(BeerManager.shared.beerList[0].volume)L"
-        savedBuyLabelText1 = "\(BeerManager.shared.beerList[0].price)$ / \(BeerManager.shared.beerList[0].name) (\(BeerManager.shared.beerList[0].country)) / \(BeerManager.shared.beerList[0].volume)L"
         buyLabel1.textColor = UIColor.black
         buyLabel1.font = UIFont(name: "Helvetica", size: 15)
         buyLabel1.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +104,6 @@ class ViewController: UIViewController {
     
     func setupBuyLabel2() {
         buyLabel2.text = "\(BeerManager.shared.beerList[1].price)$ / \(BeerManager.shared.beerList[1].name) (\(BeerManager.shared.beerList[1].country)) / \(BeerManager.shared.beerList[1].volume)L"
-        savedBuyLabelText2 = "\(BeerManager.shared.beerList[1].price)$ / \(BeerManager.shared.beerList[1].name) (\(BeerManager.shared.beerList[1].country)) / \(BeerManager.shared.beerList[1].volume)L"
         buyLabel2.textColor = UIColor.black
         buyLabel2.font = UIFont(name: "Helvetica", size: 15)
         buyLabel2.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +115,6 @@ class ViewController: UIViewController {
     
     func setupBuyLabel3() {
         buyLabel3.text = "\(BeerManager.shared.beerList[2].price)$ / \(BeerManager.shared.beerList[2].name) (\(BeerManager.shared.beerList[2].country)) / \(BeerManager.shared.beerList[2].volume)L"
-        savedBuyLabelText3 = "\(BeerManager.shared.beerList[2].price)$ / \(BeerManager.shared.beerList[2].name) (\(BeerManager.shared.beerList[2].country)) / \(BeerManager.shared.beerList[2].volume)L"
         buyLabel3.textColor = UIColor.black
         buyLabel3.font = UIFont(name: "Helvetica", size: 15)
         buyLabel3.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +125,6 @@ class ViewController: UIViewController {
     
     func setupBuyLabel4() {
         buyLabel4.text = "\(BeerManager.shared.beerList[3].price)$ / \(BeerManager.shared.beerList[3].name) (\(BeerManager.shared.beerList[3].country)) / \(BeerManager.shared.beerList[3].volume)L"
-        savedBuyLabelText4 = "\(BeerManager.shared.beerList[3].price)$ / \(BeerManager.shared.beerList[3].name) (\(BeerManager.shared.beerList[3].country)) / \(BeerManager.shared.beerList[3].volume)L"
         buyLabel4.textColor = UIColor.black
         buyLabel4.font = UIFont(name: "Helvetica", size: 15)
         buyLabel4.translatesAutoresizingMaskIntoConstraints = false
@@ -139,6 +146,8 @@ class ViewController: UIViewController {
         completeDayButton.setTitle("Завершить день", for: .normal)
         completeDayButton.addTarget(self, action: #selector(completeDayButtonTapped), for: .touchUpInside)
         completeDayButton.translatesAutoresizingMaskIntoConstraints = false
+        completeDayButton.backgroundColor = UIColor.systemGray5
+        completeDayButton.layer.cornerRadius = 8
         
         setupCompleteDayButtonConstraints()
     }
@@ -186,10 +195,10 @@ class ViewController: UIViewController {
     
     @objc func completeDayButtonTapped() {
         revenueLabel.text = "Выручка: \(BeerManager.shared.resetRevenue())"
-        buyLabel1.text = savedBuyLabelText1
-        buyLabel2.text = savedBuyLabelText2
-        buyLabel3.text = savedBuyLabelText3
-        buyLabel4.text = savedBuyLabelText4
+        buyLabel1.text = "\(BeerManager.shared.beerList[0].price)$ / \(BeerManager.shared.beerList[0].name) (\(BeerManager.shared.beerList[0].country)) / \(BeerManager.shared.beerList[0].volume)L"
+        buyLabel2.text = "\(BeerManager.shared.beerList[1].price)$ / \(BeerManager.shared.beerList[1].name) (\(BeerManager.shared.beerList[1].country)) / \(BeerManager.shared.beerList[1].volume)L"
+        buyLabel3.text = "\(BeerManager.shared.beerList[2].price)$ / \(BeerManager.shared.beerList[2].name) (\(BeerManager.shared.beerList[2].country)) / \(BeerManager.shared.beerList[2].volume)L"
+        buyLabel4.text = "\(BeerManager.shared.beerList[3].price)$ / \(BeerManager.shared.beerList[3].name) (\(BeerManager.shared.beerList[3].country)) / \(BeerManager.shared.beerList[3].volume)L"
     }
     
     // MARK: - создание констрейнтов для элементов
