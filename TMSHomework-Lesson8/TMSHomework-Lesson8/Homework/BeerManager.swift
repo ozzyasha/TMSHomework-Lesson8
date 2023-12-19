@@ -8,7 +8,12 @@
 import Foundation
 
 class BeerManager {
-    static let shared = BeerManager()
+    
+    static var shared: BeerManager =  {
+        let instance = BeerManager()
+        return instance
+    }()
+    
     private var revenue: Double = 0 // Выручка
     
     let heinekenVolume = 10
